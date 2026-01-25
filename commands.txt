@@ -1,0 +1,5 @@
+1. Create image of java project using: mvn clean package
+2. Create a docker file in root directory
+3. Edit application.properties (Spring datasource url)
+4. Create docker-compose.yml
+5. docker-compose up --build (Build and executes the java application)
