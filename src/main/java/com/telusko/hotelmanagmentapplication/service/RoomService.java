@@ -47,6 +47,22 @@ public class RoomService {
                 .collect(Collectors.toList());
     }
 
+    public List<RoomListDTO> getAvailableRoomsByHotel(Long hotelId) {
+
+        return roomRepository
+                .findByHotelIdAndStatus(hotelId, Room.Status.AVAILABLE)
+                .stream()
+                .map(room -> {
+                    RoomListDTO dto = new RoomListDTO();
+                    dto.setId(room.getId());
+                    dto.setRoomNumber(room.getRoomNumber());
+                    dto.setHotelName(room.getHotel().getName());
+                    dto.setRoomTypeName(room.getRoomType().getName());
+                    dto.setStatus(room.getStatus());
+                    return dto;
+                })
+                .collect(Collectors.toList());
+    }
 
 
     public RoomDTO get(Long id) {

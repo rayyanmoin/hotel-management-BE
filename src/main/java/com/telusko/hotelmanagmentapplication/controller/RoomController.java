@@ -27,12 +27,18 @@ public class RoomController {
         return roomService.getAllWithNames();
     }
 
+    @GetMapping("/findByHotel")
+    public List<RoomListDTO> getAvailableRooms(
+            @RequestParam Long hotelId
+    ) {
+        return roomService.getAvailableRoomsByHotel(hotelId);
+    }
+
+
     @GetMapping("/{id}")
     public RoomDTO get(@PathVariable Long id) {
         return roomService.get(id);
     }
-
-
 
     @PostMapping
     public RoomDTO create(@RequestBody RoomDTO dto) {
